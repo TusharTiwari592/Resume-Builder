@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Resume Builder</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+	<link rel="stylesheet" href="resumebuilder.css">
+</head>
+<body>
+	<div id="wrapper">	
+
+		<div class="sidebar">
+			<h1>Resume Builder</h1>
+			<ul>
+				<li><a href="" class="active"><i class="fa-solid fa-calendar-day"></i>My Details</a></li>
+				<li><a href=""><i class="fa-solid fa-info"></i>About Me</a></li>
+				<li><a href=""><i class="fa-solid fa-gear"></i>Skills & Proficiencies</a></li>
+				<li><a href=""><i class="fa-solid fa-briefcase"></i>Work Experiences</a></li>
+				<li><a href=""><i class="fa-solid fa-user-graduate"></i>Educational Background</a></li>
+				<li><a href=""><i class="fa-solid fa-trophy"></i>Achievements</a></li>
+				<li><a href=""><i class="fa-brands fa-mendeley"></i>Memberships</a></li>
+			</ul>
+		</div>
+		<div class="content">	
+			<div class="left">
+			<form action="">
+				<div class="form show">
+					<h1>My Details</h1>
+					<input type="file" name="Photo"><br> 
+					<input type="text" placeholder="Enter your full Name" name="fullname"><br>
+					<select name="options" id="">
+						<option value="" disabled selected >Role</option>
+						<option value="Developer">Developer</option>
+						<option value="Testing">Testing</option>
+						<option value="Designer">Designer</option>
+						<option value="QA">QA</option>
+						<option value="Analist">Analist</option>
+					</select><br>
+					
+					<button>Next</button>
+				</div>	
+				<div class="form">
+					<h1>About Me</h1>
+					<textarea name="about_user" id="" cols="30" rows="10"></textarea>
+					<textarea name="moreAbout" id="" cols="30" rows="5"></textarea>
+					<button>Next</button>
+				</div>
+				<div class="form">
+					<h1>Skills & Proficiencies</h1>
+					<div class="table">
+						<table>
+							<tr>
+								<th>Select</th>
+								<th>Catagory</th>
+								<th>Skill</th>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>Business Analysis</td>
+								<td>Agile</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>Business Analysis</td>
+								<td>Business requirement Doc</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>Business Analysis</td>
+								<td>Flow Diagram</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>Business Analysis</td>
+								<td>Wireframe</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>Business Analysis</td>
+								<td>Other</td>
+							</tr>
+							
+						</table>
+					</div>
+					<button>Next</button>
+				</div> 
+				<div class="form">
+					<h1>Work Experiences</h1>
+					<span><strong>Client Experience :</strong></span><input type="text"><br>
+					<span><strong>Country :</strong></span><input type="text"><br>
+					<span><strong>Project Name :</strong></span><input type="text"><br>
+					<span><strong>Project Name :</strong></span><input type="text"><br>
+					<span><strong>Dutation :</strong></span><input type="date"><br>
+					<span><strong>Business solution :</strong></span><textarea name="" id="" cols="30" rows="10"></textarea>	<br>
+					<span><strong>Technology Stack :</strong></span><input type="text"><br>
+					<span><strong>Project Responsibilities :</strong></span><textarea name="" id="" cols="30" rows="4"></textarea><br>
+					
+					<button>Next</button>
+				</div>
+				<div class="form">
+					<h1>Educational Background</h1>
+					<input type="text">
+					<input type="text">
+					<button>Next</button>
+				</div>	
+				<div class="form">
+					<h1>Achievements</h1>
+					<input type="text">
+					<input type="text">
+					<button>Next</button>
+				</div>
+				<div class="form">
+					<h1>Memberships</h1>
+					<input type="text">
+					<input type="text">
+					<input type="submit" value="submit">
+				</div>
+			</form>
+				</div>
+			<div class="right">
+				<div class="top">
+					<div class="prifilePic">
+						<img src="" alt="">
+					</div>
+					<div class="name">
+						<span><strong>Full Name :</strong></span><p class="fromSessionStorage" id="fullname"></p>
+						<span><strong>Role:</strong></span><p class="fromSessionStorage" id="options"></p>
+						</div>
+					</div>
+					<div class="about">
+						<span><strong>About Me :</strong></span><p class="fromSessionStorage" id="about_user"></p>
+						<p class="fromSessionStorage" id="moreAbout"></p>></p>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+
+		// if(sessionStorage.getItem("fullname"))
+		// document.getElementById("name").innerHTML = sessionStorage.getItem("fullname");
+
+		
+
+
+		let form = document.querySelectorAll(".form");
+		let show = document.querySelector(".show");
+		let anchors = document.querySelectorAll("a");
+		let next = document.querySelectorAll("button");
+		let input = document.querySelectorAll("input");
+		let imageInput = document.querySelector("input[type=file]")
+		let image = document.querySelector("img");
+		let print_div = document.querySelector(".name")
+		let elementsToFill = document.querySelectorAll(".fromSessionStorage");
+		let inputvalue =[];
+		
+		// let elements;
+		// let Feat_img;
+
+		
+		// 	elements = Array.from(next[0].parentElement.children);
+		// 	elements.pop();//to remove last html element
+		// 	elements.shift();//to remove first html element
+			// elements.forEach((oneelement , index)=>{
+			// 	if(oneelement.type ==="file"){
+			// image.setAttribute("src", sessionStorage.getItem("photo"));
+		// }
+		// })
+		image.setAttribute("src", sessionStorage.getItem("photo"));
+
+		console.log(sessionStorage);
+			image.setAttribute("src", sessionStorage.getItem("Photo"))
+			contEle = Array.from(elementsToFill);
+					contEle.forEach((one)=>{
+						console.log(one.id);
+						one.innerHTML = sessionStorage.getItem(one.id);
+					})
+
+
+		anchors.forEach((anchor)=>{
+			// anchor.classList.remove("active");
+			anchor.onclick =(e)=>{
+			e.preventDefault();
+
+
+				anchors.forEach((current)=>{
+					current.classList.remove("active");
+				})	
+				anchor.classList.add("active");
+
+			form.forEach((oneform, index)=>{
+				if (oneform.children[0].innerText === anchor.innerText) {
+					oneform.classList.add("show")
+					// console.log(oneform.input)
+				}
+				else{
+					oneform.classList.remove("show")
+				}
+			})
+					
+			}
+		})
+			next.forEach((nex ,index)=>{
+				nex.onclick = (e)=>{
+					e.preventDefault();
+					// console.log(imageInput.files)
+
+
+					form[index].classList.remove("show");
+						// console.log(form[index])
+					form[index + 1].classList.add("show");
+
+					// console.log(anchors[index]);
+					anchors[index].classList.remove("active")
+					anchors[index + 1].classList.add("active")
+					togetdata(nex);
+				}
+			})
+
+				// console.log(oneform.innerHTML+"tushar")
+
+				
+				// form.forEach((one , index)=>{
+				// 	let asd = one.input;
+				// 	 asd.forEach((a)=>{
+
+				// 	 })
+				// })
+				
+			// function session(){
+			// 	form.forEach((one)=>{
+			// 		input.forEach((oneInput)=>{
+			// 		 inputvalue.push(oneInput.value)
+			// 	})
+			// 	})
+
+			// 	}
+
+			// 	console.log();
+				// sessionStorage.setItem('fullname', input.value);
+				// 	fullname = sessionStorage.getItem("fullname");
+
+				// 	console.log(fullname);
+				// 	document.getElementById("name").innerHTML = fullname;
+
+			// }
+				function togetdata(nextbtn){
+					// console.log(nextbtn.parentElement.children)
+					 elements = Array.from(nextbtn.parentElement.children);
+					elements.pop();//to remove last html element
+					elements.shift();//to remove first html element
+					elements.forEach((oneelement , index)=>{
+						if(oneelement.outerHTML !=="<br>"){
+							// console.log(elements);
+							// console.log(oneelement)
+							if(oneelement.type ==="file"){
+								let url = imageInput.files[0];
+								let imageSrc = URL.createObjectURL(url)//Blob file
+								 sessionStorage.setItem(oneelement.name, imageSrc);
+								console.log(oneelement.name)
+								console.log(sessionStorage.getItem("photo"))
+								console.log(imageSrc);
+								image.setAttribute("src", oneelement.name)
+
+							}
+							else{
+								sessionStorage.setItem(oneelement.name, oneelement.value);
+								
+							}
+						}
+					})
+					// console.log(sessionStorage);
+					let contEle = Array.from(elementsToFill);
+					contEle.forEach((one)=>{
+						// console.log(one.id);
+						one.innerHTML = sessionStorage.getItem(one.id);
+					})
+			
+				}
+						
+
+				
+								// console.log(oneelement)
+	</script>
+
+</body>
+</html>
